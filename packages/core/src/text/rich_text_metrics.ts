@@ -1,4 +1,4 @@
-import {
+import type {
   ITextStyle,
   IWord,
   IWordMetrics,
@@ -293,7 +293,7 @@ export class RichTextMetrics {
    */
   getEstimatedCacheMemoryUsage(): number {
     let totalSize = 0;
-    this.metricsCache.forEach((value, key) => {
+    this.metricsCache.forEach((_value, key) => {
       totalSize += key.length * 2; // Approximate UTF-16 character size
       totalSize += 32; // Approximate object overhead for IWordMetrics
     });

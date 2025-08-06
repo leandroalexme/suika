@@ -10,5 +10,5 @@ export * from './rich_text_layout';
 export * from './rich_text_renderer';
 export * from './rich_text_engine';
 
-// Optional: Example and test exports (comment out for production)
-export * from './rich_text_example';
+// Optional: Example exports (commented out to avoid build errors)
+// export * from './rich_text_example';

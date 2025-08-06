@@ -1,4 +1,4 @@
-import {
+import type {
   IRichTextConfig,
   IRichTextContent,
   IRichTextLayout,
@@ -273,7 +273,7 @@ export class RichTextEngine {
   /**
    * Insert text at current cursor position
    */
-  insertText(text: string, style?: Partial<ITextStyle>): void {
+  insertText(_text: string, _style?: Partial<ITextStyle>): void {
     if (!this.content || !this.selection) return;
     
     // TODO: Implement text insertion
@@ -304,7 +304,7 @@ export class RichTextEngine {
   /**
    * Apply formatting to current selection
    */
-  applyFormatting(style: Partial<ITextStyle>): void {
+  applyFormatting(_style: Partial<ITextStyle>): void {
     if (!this.content || !this.selection || this.selection.collapsed) return;
     
     // TODO: Implement formatting application

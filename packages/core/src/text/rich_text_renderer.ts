@@ -1,4 +1,4 @@
-import {
+import type {
   IRichTextLayout,
   ITextLine,
   IWord,
@@ -45,7 +45,7 @@ export class RichTextRenderer {
   /**
    * Render a single line of text
    */
-  private renderLine(line: ITextLine, ctx: CanvasRenderingContext2D, layout: IRichTextLayout): void {
+  private renderLine(line: ITextLine, ctx: CanvasRenderingContext2D, _layout: IRichTextLayout): void {
     if (line.words.length === 0) return;
 
     let currentX = line.x;
@@ -138,7 +138,7 @@ export class RichTextRenderer {
   /**
    * Cache rendered text for performance
    */
-  private cacheText(text: string, style: ITextStyle, ctx: CanvasRenderingContext2D): void {
+  private cacheText(text: string, style: ITextStyle, _ctx: CanvasRenderingContext2D): void {
     if (this.textCache.size >= this.maxCacheSize) {
       // Remove oldest entries
       const entries = Array.from(this.textCache.entries());
@@ -279,7 +279,7 @@ export class RichTextRenderer {
     ctx: CanvasRenderingContext2D,
     layout: IRichTextLayout
   ): void {
-    const listLevel = block.listLevel || 0;
+    // const listLevel = block.listLevel || 0;
     const listType = block.listType;
     const defaultStyle = layout.words.length > 0 ? layout.words[0].style : {};
     
@@ -308,7 +308,7 @@ export class RichTextRenderer {
   /**
    * Get list item number (simplified implementation)
    */
-  private getListItemNumber(block: any, layout: IRichTextLayout): number {
+  private getListItemNumber(_block: any, _layout: IRichTextLayout): number {
     // Simplified - would need proper list numbering logic
     return 1;
   }

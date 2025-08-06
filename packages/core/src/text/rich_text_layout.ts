@@ -1,4 +1,4 @@
-import {
+import type {
   ITextBlock,
   IWord,
   ITextLine,
@@ -55,8 +55,9 @@ export class RichTextLayoutEngine {
     const listIndentation = this.config.listIndentation || 20;
 
     let currentY = 0;
-    let currentBlockIndex = -1;
-    let wordsInCurrentBlock: IWord[] = [];
+    // Variables for potential future use
+    // let currentBlockIndex = -1;
+    // let wordsInCurrentBlock: IWord[] = [];
 
     // Group words by block
     const wordsByBlock = new Map<number, IWord[]>();
