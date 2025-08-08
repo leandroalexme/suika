@@ -21,7 +21,7 @@ const defaultInputStyle = {
 
 export class TextEditor {
   private inputDom: HTMLInputElement;
-  private textGraphics: SuikaText | null = null;
+  private textGraphics: SuikaText | any | null = null;
   private rangeManager: RangeManager;
   private _active = false;
   private transaction!: Transaction;
@@ -55,7 +55,7 @@ export class TextEditor {
     return this._active;
   }
 
-  active(params: { textGraphics?: SuikaText; pos: IPoint; range?: IRange }) {
+  active(params: { textGraphics?: SuikaText | any; pos: IPoint; range?: IRange }) {
     this._active = true;
     this.editor.controlHandleManager.enableTransformControl = false;
     this.editor.selectedBox.enableDrawSizeIndicator = false;
@@ -177,7 +177,17 @@ export class TextEditor {
           e.data +
           sliceContent(content, rangeRight);
 
-        TextEditor.updateTextContentAndResize(textGraphics, newContent);
+        // If this is a rich text graphics, route through engine as well
+        if (typeof (textGraphics as any).getRichTextEngine === 'function') {
+          const engine = (textGraphics as any).getRichTextEngine();
+          const pos = engine.getPositionFromCharacterIndex(rangeLeft) || engine.getPositionFromCharacterIndex(0);
+          if (pos) engine.setCursor(pos);
+          engine.insertText(e.data);
+          if (typeof (textGraphics as any).refreshFromEngine === 'function') {
+            (textGraphics as any).refreshFromEngine();
+          }
+        }
+        TextEditor.updateTextContentAndResize(textGraphics as SuikaText, newContent);
         const dataLength = getContentLength(e.data);
         this.rangeManager.setRange({
           start: rangeLeft + dataLength,
@@ -187,7 +197,22 @@ export class TextEditor {
       } else if (e.isComposing) {
         const newContent =
           leftContentWhenComposing + composingText + rightContentWhenComposing;
-        TextEditor.updateTextContentAndResize(textGraphics, newContent);
+        if (typeof (textGraphics as any).getRichTextEngine === 'function') {
+          const engine = (textGraphics as any).getRichTextEngine();
+          // For composing, set selection and replace logically
+          const { rangeLeft, rangeRight } = this.rangeManager.getSortedRange();
+          const start = engine.getPositionFromCharacterIndex(rangeLeft) || engine.getPositionFromCharacterIndex(0);
+          const end = engine.getPositionFromCharacterIndex(rangeRight) || start;
+          if (start && end) {
+            engine.setSelection({ start, end, collapsed: start.characterIndex === end.characterIndex });
+            // replace selection with composing text
+            engine.insertText(composingText);
+          }
+          if (typeof (textGraphics as any).refreshFromEngine === 'function') {
+            (textGraphics as any).refreshFromEngine();
+          }
+        }
+        TextEditor.updateTextContentAndResize(textGraphics as SuikaText, newContent);
         const newRangeStart =
           getContentLength(leftContentWhenComposing) +
           getContentLength(composingText);
@@ -219,7 +244,19 @@ export class TextEditor {
         const leftContent = sliceContent(content, 0, rangeLeft);
         const rightContent = sliceContent(content, rangeRight);
         const newContent = leftContent + rightContent;
-        TextEditor.updateTextContentAndResize(textGraphics, newContent);
+        if (typeof (textGraphics as any).getRichTextEngine === 'function') {
+          const engine = (textGraphics as any).getRichTextEngine();
+          const start = engine.getPositionFromCharacterIndex(rangeLeft) || engine.getPositionFromCharacterIndex(0);
+          const end = engine.getPositionFromCharacterIndex(rangeRight) || start;
+          if (start && end) {
+            engine.setSelection({ start, end, collapsed: start.characterIndex === end.characterIndex });
+            engine.deleteText(e.key === 'Backspace' ? 'backward' : 'forward');
+          }
+          if (typeof (textGraphics as any).refreshFromEngine === 'function') {
+            (textGraphics as any).refreshFromEngine();
+          }
+        }
+        TextEditor.updateTextContentAndResize(textGraphics as SuikaText, newContent);
 
         if (isSelected) {
           this.rangeManager.setRange({
@@ -285,7 +322,19 @@ export class TextEditor {
         const newContent =
           sliceContent(this.textGraphics.attrs.content, 0, rangeLeft) +
           sliceContent(this.textGraphics.attrs.content, rangeRight);
-        TextEditor.updateTextContentAndResize(this.textGraphics, newContent);
+        if (typeof (this.textGraphics as any).getRichTextEngine === 'function') {
+          const engine = (this.textGraphics as any).getRichTextEngine();
+          const start = engine.getPositionFromCharacterIndex(rangeLeft) || engine.getPositionFromCharacterIndex(0);
+          const end = engine.getPositionFromCharacterIndex(rangeRight) || start;
+          if (start && end) {
+            engine.setSelection({ start, end, collapsed: start.characterIndex === end.characterIndex });
+            engine.deleteText('forward');
+          }
+          if (typeof (this.textGraphics as any).refreshFromEngine === 'function') {
+            (this.textGraphics as any).refreshFromEngine();
+          }
+        }
+        TextEditor.updateTextContentAndResize(this.textGraphics as SuikaText, newContent);
 
         this.rangeManager.setRange({
           start: rangeLeft,
