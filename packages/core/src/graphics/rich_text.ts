@@ -10,12 +10,8 @@ import {
   SuikaGraphics,
 } from './graphics';
 import { type IDrawInfo } from './type';
-import { 
-  RichTextEngine,
-  IRichTextConfig,
-  IRichTextRenderContext,
-  ITextStyle,
-} from '../text/rich_text_engine';
+import { RichTextEngine } from '../text/rich_text_engine';
+import { IRichTextConfig, IRichTextRenderContext, ITextStyle } from '../text/rich_text_types';
 
 export interface RichTextAttrs extends GraphicsAttrs {
   content: string;
@@ -64,9 +60,8 @@ export class SuikaRichText extends SuikaGraphics<RichTextAttrs> {
       defaultStyle,
       maxWidth: attrs.maxWidth || attrs.width,
       textAlign: attrs.textAlign || 'left',
-      lineHeight: attrs.lineHeight || 1.2,
       wordWrap: true,
-      lineSpacing: 1.2,
+      lineSpacing: attrs.lineHeight || 1.2,
       paragraphSpacing: 8,
       listIndentation: 20,
     };
@@ -95,7 +90,6 @@ export class SuikaRichText extends SuikaGraphics<RichTextAttrs> {
 
   override updateAttrs(partialAttrs: Partial<RichTextAttrs> & IAdvancedAttrs) {
     const oldContent = this.attrs.content;
-    const oldRichText = this._isRichTextMode;
     
     super.updateAttrs(partialAttrs);
 
@@ -231,6 +225,53 @@ export class SuikaRichText extends SuikaGraphics<RichTextAttrs> {
   }
 
   /**
+   * Provide glyph-like cursor anchors compatible with RangeManager expectations
+   */
+  getGlyphs() {
+    // Build glyph-like per-character positions so RangeManager can map indices
+    const layout = this.richTextEngine.getLayout();
+    const glyphs: Array<{ position: IPoint; width: number; height: number }> = [];
+    if (!layout) return glyphs;
+
+    const tmpCanvas = document.createElement('canvas');
+    const ctx = tmpCanvas.getContext('2d')!;
+
+    layout.lines.forEach((line) => {
+      let currentX = line.x;
+      const topY = line.y;
+
+      line.words.forEach((w) => {
+        // Apply word style
+        const fontFamily = w.style.fontFamily || 'sans-serif';
+        const fontSize = w.style.fontSize || 16;
+        const fontWeight = w.style.fontWeight || 'normal';
+        const fontStyle = w.style.fontStyle || 'normal';
+        ctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
+
+        // Walk each character in the word to compute positions
+        for (let i = 0; i < w.text.length; i++) {
+          const char = w.text[i];
+          const charWidth = ctx.measureText(char).width;
+          glyphs.push({ position: { x: currentX, y: topY }, width: charWidth, height: w.height });
+          currentX += charWidth;
+        }
+      });
+    });
+
+    return glyphs;
+  }
+
+  getContentMetrics() {
+    const dims = this.richTextEngine.getDimensions();
+    return {
+      width: dims.width,
+      height: dims.height,
+      fontBoundingBoxAscent: this.attrs.fontSize, // fallback
+      fontBoundingBoxDescent: 0,
+    } as any;
+  }
+
+  /**
    * Get coordinates for cursor at given index
    */
   getCursorCoordinates(index: number): IPoint | null {
@@ -298,6 +339,17 @@ export class SuikaRichText extends SuikaGraphics<RichTextAttrs> {
       : this.richTextEngine.getPlainText();
     
     this.updateAttrs({ content: newContent });
+  }
+
+  /**
+   * Refresh attrs.content and size from current engine state
+   */
+  refreshFromEngine(): void {
+    const newContent = this._isRichTextMode
+      ? this.richTextEngine.exportToHTML()
+      : this.richTextEngine.getPlainText();
+    const dims = this.richTextEngine.getDimensions();
+    this.updateAttrs({ content: newContent, width: dims.width, height: dims.height });
   }
 
   /**
@@ -399,9 +451,8 @@ export class SuikaRichText extends SuikaGraphics<RichTextAttrs> {
   /**
    * Cleanup resources
    */
-  override destroy() {
+  destroy() {
     this.richTextEngine.destroy();
-    super.destroy();
   }
 
   /**
