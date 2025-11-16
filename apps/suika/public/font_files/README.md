@@ -68,6 +68,14 @@ Cada fonte possui as seguintes variantes:
      'Nova Fonte-400italic': './font_files/nova-fonte/NovaFonte-Italic.ttf',
      'Nova Fonte-700italic': './font_files/nova-fonte/NovaFonte-BoldItalic.ttf',
    };
+   
+   // Add to supported fonts list (for RichText dropdown)
+   export const RICHTEXT_SUPPORTED_FONTS = [
+     'Roboto',
+     'Inter',
+     'Open Sans',
+     'Nova Fonte', // ← Add here
+   ] as const;
    ```
 
 4. **Rebuild** o core:
@@ -81,6 +89,9 @@ Cada fonte possui as seguintes variantes:
 - Use **TTF ou OTF** apenas
 - Cada variante (Bold, Italic) é um **arquivo separado**
 - Não existe "fake bold" - deve-se carregar `FontName-Bold.ttf`
+- **Fontes sem todas as 4 variantes não devem ser adicionadas a `RICHTEXT_SUPPORTED_FONTS`**
+  - Os botões B/I/U não funcionarão visualmente se a variante não existir
+  - Exemplo: Source Han Sans CN tem apenas Regular, então não está em `RICHTEXT_SUPPORTED_FONTS`
 
 ## 🔗 Fontes Usadas
 

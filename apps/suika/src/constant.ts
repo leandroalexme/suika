@@ -42,3 +42,23 @@ export const FONT_FILES = {
   // ========== SMILEY SANS ==========
   'Smiley Sans': './font_files/smiley-sans/smiley-sans-oblique.otf',
 };
+
+/**
+ * Font families that support all 4 variants (regular, bold, italic, bold italic)
+ * These are safe to use with formatting buttons (B/I/U)
+ *
+ * To add a new font:
+ * 1. Add all 4 variant files (.ttf/.otf) to public/font_files/[font-name]/
+ * 2. Register variants in FONT_FILES above:
+ *    - FontName: './font_files/[font-name]/FontName-Regular.ttf'
+ *    - FontName-400: './font_files/[font-name]/FontName-Regular.ttf'
+ *    - FontName-700: './font_files/[font-name]/FontName-Bold.ttf'
+ *    - FontName-400italic: './font_files/[font-name]/FontName-Italic.ttf'
+ *    - FontName-700italic: './font_files/[font-name]/FontName-BoldItalic.ttf'
+ * 3. Add 'FontName' to this array
+ */
+export const RICHTEXT_SUPPORTED_FONTS = [
+  'Roboto',
+  'Inter',
+  'Open Sans',
+] as const;

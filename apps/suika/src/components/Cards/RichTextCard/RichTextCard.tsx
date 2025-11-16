@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FONT_FILES } from '@/constant';
+import { FONT_FILES, RICHTEXT_SUPPORTED_FONTS } from '@/constant';
 
 import { EditorContext } from '../../../context';
 import NumberInput from '../../input/NumberInput';
@@ -247,7 +247,7 @@ export const RichTextCard: React.FC = () => {
           </div>
         )}
 
-        {/* Font Family - Using same selector as TypographyCard */}
+        {/* Font Family - Only fonts with full variant support (B/I/U work correctly) */}
         <div className="property-row">
           <label>Font Family</label>
           <Select value={fontFamily} onValueChange={handleFontFamilyChange}>
@@ -255,14 +255,11 @@ export const RichTextCard: React.FC = () => {
               <SelectValue placeholder="Select font family" />
             </SelectTrigger>
             <SelectContent className="w-full">
-              {/* Filtrar apenas fontes sem variantes (sem -400, -700, etc) */}
-              {Object.keys(FONT_FILES)
-                .filter((font) => !font.match(/-\d{3}(italic)?$/))
-                .map((font) => (
-                  <SelectItem key={font} value={font}>
-                    {font}
-                  </SelectItem>
-                ))}
+              {RICHTEXT_SUPPORTED_FONTS.map((font) => (
+                <SelectItem key={font} value={font}>
+                  {font}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
