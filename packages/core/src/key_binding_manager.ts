@@ -15,6 +15,7 @@ export interface IKey {
 
 interface IWhenCtx {
   isToolDragging: boolean;
+  isRichTextEditing: boolean;
 }
 
 interface IKeyBinding {
@@ -70,6 +71,7 @@ export class KeyBindingManager {
     let isMatch = false;
     const ctx: IWhenCtx = {
       isToolDragging: this.editor.toolManager.isDragging(),
+      isRichTextEditing: this.editor.richTextEditor.isActive(),
     };
 
     for (const keyBinding of this.keyBindingMap.values()) {

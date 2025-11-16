@@ -121,6 +121,11 @@ export class SuikaText extends SuikaGraphics<TextAttrs> {
     const glyphs = this.getGlyphs();
     const font = fontManager.getFont(this.attrs.fontFamily);
 
+    if (!font) {
+      console.warn(`Font ${this.attrs.fontFamily} not loaded`);
+      return;
+    }
+
     ctx.save();
 
     const fontSize = this.attrs.fontSize;
@@ -188,6 +193,11 @@ export class SuikaText extends SuikaGraphics<TextAttrs> {
     if (this.contentMetrics) return this.contentMetrics;
     const glyphs = this.getGlyphs();
     const font = fontManager.getFont(this.attrs.fontFamily);
+
+    if (!font) {
+      return { width: 0, height: 0 };
+    }
+
     const lastGlyph = glyphs[glyphs.length - 1];
 
     const lineHeight = Math.round(this.getDefaultLineHeight());
@@ -201,6 +211,11 @@ export class SuikaText extends SuikaGraphics<TextAttrs> {
 
   private getDefaultLineHeight() {
     const font = fontManager.getFont(this.attrs.fontFamily);
+
+    if (!font) {
+      return 0;
+    }
+
     const ascender = font.tables.hhea.ascender as number;
     const descender = font.tables.hhea.descender as number;
     const lineGap = font.tables.hhea.lineGap as number;
@@ -223,6 +238,11 @@ export class SuikaText extends SuikaGraphics<TextAttrs> {
   getCursorIndex(point: IPoint) {
     point = applyInverseMatrix(this.getWorldTransform(), point);
     const font = fontManager.getFont(this.attrs.fontFamily);
+
+    if (!font) {
+      return 0;
+    }
+
     const scale = this.attrs.fontSize / font.unitsPerEm;
     const matrix = new Matrix()
       .translate(0, this.attrs.fontSize)

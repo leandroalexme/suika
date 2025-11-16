@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { type SuikaGraphics } from '@suika/core';
+import { type SuikaGraphics, SuikaRichText } from '@suika/core';
 import { type FC, useContext, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -9,6 +9,7 @@ import { AlignCard } from '../Cards/AlignCard';
 import { ElementsInfoCards } from '../Cards/ElementsInfoCard';
 import { FillCard } from '../Cards/FillCard';
 import { LayerInfoCard } from '../Cards/LayerInfoCard';
+import { RichTextCard } from '../Cards/RichTextCard';
 import { StrokeCard } from '../Cards/StrokeCard';
 import { TypographyCard } from '../Cards/TypographyCard';
 import { DebugPanel } from '../DebugPanel';
@@ -21,6 +22,7 @@ enum PanelType {
 export const InfoPanel: FC = () => {
   const editor = useContext(EditorContext);
   const [type, setType] = useState(PanelType.Global);
+  const [hasRichText, setHasRichText] = useState(false);
   // select panel type by selected elements
 
   const showDebugPanel = localStorage.getItem('suika-debug-panel') === 'true';
@@ -29,6 +31,7 @@ export const InfoPanel: FC = () => {
     if (editor) {
       const handler = (items: SuikaGraphics[]) => {
         setType(items.length ? PanelType.SelectedElements : PanelType.Global);
+        setHasRichText(items.some((item) => item instanceof SuikaRichText));
       };
       editor.selectedElements.on('itemsChange', handler);
 
@@ -45,6 +48,7 @@ export const InfoPanel: FC = () => {
           <AlignCard />
           <ElementsInfoCards />
           <TypographyCard />
+          {hasRichText && <RichTextCard />}
           <LayerInfoCard />
           <FillCard key="fill" />
           <StrokeCard key="stroke" />

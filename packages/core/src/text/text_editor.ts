@@ -4,9 +4,9 @@ import { type IPoint } from '@suika/geo';
 import { type SuikaEditor } from '../editor';
 import { type IDrawInfo, SuikaText, type TextAttrs } from '../graphics';
 import { type IMousemoveEvent } from '../host_event_manager';
+import { type IRange, RangeManager } from '../richtext/editor/range_manager';
 import { removeGraphicsAndRecord } from '../service/remove_service';
 import { Transaction } from '../transaction';
-import { type IRange, RangeManager } from './range_manager';
 
 const defaultInputStyle = {
   position: 'fixed',

@@ -1,3 +1,4 @@
+export * from '../richtext/graphics';
 export * from './canvas';
 export * from './document';
 export * from './ellipse';

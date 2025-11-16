@@ -63,7 +63,9 @@ const Editor: FC = () => {
       );
 
       (async () => {
+        // Carregar fontes locais
         await fontManager.loadFonts(FONT_FILES);
+
         if (isCanceled) return;
 
         const editor = new SuikaEditor({

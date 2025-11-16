@@ -3,6 +3,7 @@ import {
   isFrameGraphics,
   type SuikaGraphics,
   SuikaPath,
+  SuikaRichText,
   SuikaText,
 } from '../graphics';
 import {
@@ -59,7 +60,7 @@ export class CommandKeyBinding {
     };
     editor.keybindingManager.register({
       key: [{ keyCode: 'Backspace' }, { keyCode: 'Delete' }],
-      when: (ctx) => !ctx.isToolDragging,
+      when: (ctx) => !ctx.isToolDragging && !ctx.isRichTextEditing,
       actionName: 'Delete',
       action: deleteAction,
     });
@@ -72,8 +73,82 @@ export class CommandKeyBinding {
     editor.keybindingManager.register({
       key: { metaKey: true, keyCode: 'KeyA' },
       winKey: { ctrlKey: true, keyCode: 'KeyA' },
+      when: (ctx) => !ctx.isRichTextEditing,
       actionName: 'Select All',
       action: selectAllAction,
+    });
+
+    /********** Rich Text Formatting **********/
+    // Bold (Cmd+B)
+    const boldAction = () => {
+      const items = editor.selectedElements.getItems();
+      const richTextItems = items.filter(
+        (item) => item instanceof SuikaRichText,
+      );
+
+      for (const item of richTextItems) {
+        const richText = item as SuikaRichText;
+        richText.applyBold();
+      }
+
+      if (richTextItems.length > 0) {
+        editor.render();
+      }
+    };
+    editor.keybindingManager.register({
+      key: { metaKey: true, keyCode: 'KeyB' },
+      winKey: { ctrlKey: true, keyCode: 'KeyB' },
+      when: (ctx) => ctx.isRichTextEditing,
+      actionName: 'Bold',
+      action: boldAction,
+    });
+
+    // Italic (Cmd+I)
+    const italicAction = () => {
+      const items = editor.selectedElements.getItems();
+      const richTextItems = items.filter(
+        (item) => item instanceof SuikaRichText,
+      );
+
+      for (const item of richTextItems) {
+        const richText = item as SuikaRichText;
+        richText.applyItalic();
+      }
+
+      if (richTextItems.length > 0) {
+        editor.render();
+      }
+    };
+    editor.keybindingManager.register({
+      key: { metaKey: true, keyCode: 'KeyI' },
+      winKey: { ctrlKey: true, keyCode: 'KeyI' },
+      when: (ctx) => ctx.isRichTextEditing,
+      actionName: 'Italic',
+      action: italicAction,
+    });
+
+    // Underline (Cmd+U)
+    const underlineAction = () => {
+      const items = editor.selectedElements.getItems();
+      const richTextItems = items.filter(
+        (item) => item instanceof SuikaRichText,
+      );
+
+      for (const item of richTextItems) {
+        const richText = item as SuikaRichText;
+        richText.applyUnderline();
+      }
+
+      if (richTextItems.length > 0) {
+        editor.render();
+      }
+    };
+    editor.keybindingManager.register({
+      key: { metaKey: true, keyCode: 'KeyU' },
+      winKey: { ctrlKey: true, keyCode: 'KeyU' },
+      when: (ctx) => ctx.isRichTextEditing,
+      actionName: 'Underline',
+      action: underlineAction,
     });
 
     // switch to default select tool
@@ -434,7 +509,7 @@ export class CommandKeyBinding {
     };
     editor.keybindingManager.register({
       key: { keyCode: 'Enter' },
-      when: (ctx) => !ctx.isToolDragging,
+      when: (ctx) => !ctx.isToolDragging && !ctx.isRichTextEditing,
       actionName: 'EnterGraphEdit',
       action: enterGraphicsEdit,
     });

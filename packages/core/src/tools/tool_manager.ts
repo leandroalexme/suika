@@ -3,6 +3,7 @@ import { type IPoint } from '@suika/geo';
 
 import { type SuikaEditor } from '../editor';
 import { type IKey } from '../key_binding_manager';
+import { DrawRichTextTool } from '../richtext/tools';
 import { DragCanvasTool } from './tool_drag_canvas';
 import { DrawEllipseTool } from './tool_draw_ellipse';
 import { DrawFrameTool } from './tool_draw_frame';
@@ -50,6 +51,7 @@ export class ToolManager {
     this.registerToolCtor(DrawImgTool);
     this.registerToolCtor(DrawLineTool);
     this.registerToolCtor(DrawTextTool);
+    this.registerToolCtor(DrawRichTextTool);
     this.registerToolCtor(DragCanvasTool);
     this.registerToolCtor(PathSelectTool);
     this.registerToolCtor(PenTool);
@@ -69,6 +71,7 @@ export class ToolManager {
       DrawRegularPolygonTool.type,
       DrawStarTool.type,
       DrawTextTool.type,
+      DrawRichTextTool.type,
       DragCanvasTool.type,
     ]);
 

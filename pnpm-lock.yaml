@@ -110,10 +110,10 @@ importers:
         version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)
       '@nestjs/platform-ws':
         specifier: ^10.3.10
-        version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/websockets@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
+        version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/websockets@10.4.15)(rxjs@7.8.2)
       '@nestjs/swagger':
         specifier: ^7.4.0
-        version: 7.4.2(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15)(@nestjs/websockets@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-validator@0.14.1)(reflect-metadata@0.2.2)
+        version: 7.4.2(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(class-validator@0.14.1)(reflect-metadata@0.2.2)
       '@nestjs/websockets':
         specifier: ^10.3.10
         version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -150,7 +150,7 @@ importers:
         version: 10.2.3(chokidar@3.6.0)(typescript@5.7.2)
       '@nestjs/testing':
         specifier: ^10.0.0
-        version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15)(@nestjs/websockets@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15))
+        version: 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(@nestjs/platform-express@10.4.15)
       '@types/cookie-parser':
         specifier: ^1.4.7
         version: 1.4.8(@types/express@4.17.17)
@@ -618,6 +618,9 @@ importers:
       '@suika/geo':
         specifier: workspace:^
         version: link:../geo
+      fabric-richtext-engine:
+        specifier: github:leandroalexme/richtext
+        version: https://codeload.github.com/leandroalexme/richtext/tar.gz/620f7bb5a3b6c0c668791f9dddb7f6ea446a29bb
       fractional-indexing:
         specifier: ^3.2.0
         version: 3.2.0
@@ -3176,61 +3179,51 @@ packages:
     resolution: {integrity: sha512-88fSzjC5xeH9S2Vg3rPgXJULkHcLYMkh8faix8DX4h4TIAL65ekwuQMA/g2CXq8W+NJC43V6fUpYZNjaX3+IIg==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.34.6':
     resolution: {integrity: sha512-wM4ztnutBqYFyvNeR7Av+reWI/enK9tDOTKNF+6Kk2Q96k9bwhDDOlnCUNRPvromlVXo04riSliMBs/Z7RteEg==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.34.6':
     resolution: {integrity: sha512-9RyprECbRa9zEjXLtvvshhw4CMrRa3K+0wcp3KME0zmBe1ILmvcVHnypZ/aIDXpRyfhSYSuN4EPdCCj5Du8FIA==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.34.6':
     resolution: {integrity: sha512-qTmklhCTyaJSB05S+iSovfo++EwnIEZxHkzv5dep4qoszUMX5Ca4WM4zAVUMbfdviLgCSQOu5oU8YoGk1s6M9Q==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.34.6':
     resolution: {integrity: sha512-4Qmkaps9yqmpjY5pvpkfOerYgKNUGzQpFxV6rnS7c/JfYbDSU0y6WpbbredB5cCpLFGJEqYX40WUmxMkwhWCjw==}
     cpu: [loong64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.34.6':
     resolution: {integrity: sha512-Zsrtux3PuaxuBTX/zHdLaFmcofWGzaWW1scwLU3ZbW/X+hSsFbz9wDIp6XvnT7pzYRl9MezWqEqKy7ssmDEnuQ==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.34.6':
     resolution: {integrity: sha512-aK+Zp+CRM55iPrlyKiU3/zyhgzWBxLVrw2mwiQSYJRobCURb781+XstzvA8Gkjg/hbdQFuDw44aUOxVQFycrAg==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.34.6':
     resolution: {integrity: sha512-WoKLVrY9ogmaYPXwTH326+ErlCIgMmsoRSx6bO+l68YgJnlOXhygDYSZe/qbUJCSiCiZAQ+tKm88NcWuUXqOzw==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.34.6':
     resolution: {integrity: sha512-Sht4aFvmA4ToHd2vFzwMFaQCiYm2lDFho5rPcvPBT5pCdC+GwHG6CMch4GQfmWTQ1SwRKS0dhDYb54khSrjDWw==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.34.6':
     resolution: {integrity: sha512-zmmpOQh8vXc2QITsnCiODCDGXFC8LMi64+/oPpPx5qz3pqv0s6x46ps4xoycfUiVZps5PFn1gksZzo4RGTKT+A==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.34.6':
     resolution: {integrity: sha512-3/q1qUsO/tLqGBaD4uXsB6coVGB3usxw3qyeVb59aArCgedSF66MPdgRStUd7vbZOsko/CgVaY5fo2vkvPLWiA==}
@@ -3646,28 +3639,24 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.3.53':
     resolution: {integrity: sha512-VeAgomBr6BVuBRjZjRHmvp5gKp1nZgbbd441ca1AvsPd2c+ZyhyHLxTWeHOzBDa/vYnmi9BCwx3QJzFqbAFPVw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@swc/core-linux-x64-gnu@1.3.53':
     resolution: {integrity: sha512-LFX5+QpQkESPkmx860C40pIiYf1utEqoA+WDtmKnUz3DucYvw3eGlXCBdyklP7UBWwJktKIcPlIqr7yROY5VlQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.3.53':
     resolution: {integrity: sha512-O0lbJgeaM0VEsG8wFYvpF+Iuf0IENv+LnXHoygkAsv67sVW54+gFxav2sEdkftD5qYe9ku4tmtTVYRZlFgC84Q==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.3.53':
     resolution: {integrity: sha512-7PgvPl0aNLaFZSK+rIi4DB1g0aW2qOsTIJQSJGRszsCP8pze/traXymyuSG2I3y9Hx7Z+bP5ycJydyAgCw88WA==}
@@ -3734,28 +3723,24 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@tailwindcss/oxide-linux-arm64-musl@4.1.15':
     resolution: {integrity: sha512-AbvmEiteEj1nf42nE8skdHv73NoR+EwXVSgPY6l39X12Ex8pzOwwfi3Kc8GAmjsnsaDEbk+aj9NyL3UeyHcTLg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@tailwindcss/oxide-linux-x64-gnu@4.1.15':
     resolution: {integrity: sha512-+rzMVlvVgrXtFiS+ES78yWgKqpThgV19ISKD58Ck+YO5pO5KjyxLt7AWKsWMbY0R9yBDC82w6QVGz837AKQcHg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@tailwindcss/oxide-linux-x64-musl@4.1.15':
     resolution: {integrity: sha512-fPdEy7a8eQN9qOIK3Em9D3TO1z41JScJn8yxl/76mp4sAXFDfV4YXxsiptJcOwy6bGR+70ZSwFIZhTXzQeqwQg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@tailwindcss/oxide-wasm32-wasi@4.1.15':
     resolution: {integrity: sha512-sJ4yd6iXXdlgIMfIBXuVGp/NvmviEoMVWMOAGxtxhzLPp9LOj5k0pMEMZdjeMCl4C6Up+RM8T3Zgk+BMQ0bGcQ==}
@@ -6275,6 +6260,10 @@ packages:
     resolution: {integrity: sha512-xoh5G1W/PB0/27lXgMQyIhP5DSY/LhoCsOyZgb+6iMmRtCwVBo55uKaMoEYrDCKQhWvqEip5ZPKAc6eFNyf/MA==}
     hasBin: true
 
+  fabric-richtext-engine@https://codeload.github.com/leandroalexme/richtext/tar.gz/620f7bb5a3b6c0c668791f9dddb7f6ea446a29bb:
+    resolution: {tarball: https://codeload.github.com/leandroalexme/richtext/tar.gz/620f7bb5a3b6c0c668791f9dddb7f6ea446a29bb}
+    version: 1.0.0
+
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
@@ -6918,6 +6907,7 @@ packages:
 
   intersection-observer@0.12.2:
     resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
+    deprecated: The Intersection Observer polyfill is no longer needed and can safely be removed. Intersection Observer has been Baseline since 2019.
 
   intl-messageformat@10.7.7:
     resolution: {integrity: sha512-F134jIoeYMro/3I0h08D0Yt4N9o9pjddU/4IIxMMURqbAtI2wu70X8hvG1V48W49zXHXv3RKSF/po+0fDfsGjA==}
@@ -7746,28 +7736,24 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.30.2:
     resolution: {integrity: sha512-5Vh9dGeblpTxWHpOx8iauV02popZDsCYMPIgiuw97OJ5uaDsL86cnqSFs5LZkG3ghHoX5isLgWzMs+eD1YzrnA==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.30.2:
     resolution: {integrity: sha512-Cfd46gdmj1vQ+lR6VRTTadNHu6ALuw2pKR9lYq4FnhvgBc4zWY1EtZcAc6EffShbb1MFrIPfLDXD6Xprbnni4w==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.30.2:
     resolution: {integrity: sha512-XJaLUUFXb6/QG2lGIW6aIk6jKdtjtcffUT0NKvIqhSBY3hh9Ch+1LCeH80dR9q9LBjG3ewbDjnumefsLsP6aiA==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.30.2:
     resolution: {integrity: sha512-FZn+vaj7zLv//D/192WFFVA0RgHawIcHqLX9xuWiQt7P0PtdFEVaxgF9rjM/IRYHQXNnk61/H/gb2Ei+kUQ4xQ==}
@@ -13593,87 +13579,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/preset-env@7.21.4(@babel/core@7.23.7)':
-    dependencies:
-      '@babel/compat-data': 7.23.5
-      '@babel/core': 7.23.7
-      '@babel/helper-compilation-targets': 7.23.6
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.23.5
-      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-proposal-async-generator-functions': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-class-static-block': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-proposal-dynamic-import': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-export-namespace-from': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-proposal-json-strings': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-logical-assignment-operators': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-numeric-separator': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-object-rest-spread': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-proposal-optional-catch-binding': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-proposal-private-property-in-object': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-proposal-unicode-property-regex': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.23.7)
-      '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.23.7)
-      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.23.7)
-      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-import-assertions': 7.20.0(@babel/core@7.23.7)
-      '@babel/plugin-syntax-json-strings': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.23.7)
-      '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-numeric-separator': 7.10.4(@babel/core@7.23.7)
-      '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-optional-catch-binding': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.23.7)
-      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.23.7)
-      '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.23.7)
-      '@babel/plugin-transform-arrow-functions': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-transform-async-to-generator': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-transform-block-scoped-functions': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-block-scoping': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-transform-classes': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-transform-computed-properties': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-transform-destructuring': 7.21.3(@babel/core@7.23.7)
-      '@babel/plugin-transform-dotall-regex': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-duplicate-keys': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-transform-exponentiation-operator': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-for-of': 7.21.0(@babel/core@7.23.7)
-      '@babel/plugin-transform-function-name': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-transform-literals': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-transform-member-expression-literals': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-modules-amd': 7.20.11(@babel/core@7.23.7)
-      '@babel/plugin-transform-modules-commonjs': 7.21.2(@babel/core@7.23.7)
-      '@babel/plugin-transform-modules-systemjs': 7.20.11(@babel/core@7.23.7)
-      '@babel/plugin-transform-modules-umd': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-named-capturing-groups-regex': 7.20.5(@babel/core@7.23.7)
-      '@babel/plugin-transform-new-target': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-object-super': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-parameters': 7.21.3(@babel/core@7.23.7)
-      '@babel/plugin-transform-property-literals': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-regenerator': 7.20.5(@babel/core@7.23.7)
-      '@babel/plugin-transform-reserved-words': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-shorthand-properties': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-spread': 7.20.7(@babel/core@7.23.7)
-      '@babel/plugin-transform-sticky-regex': 7.18.6(@babel/core@7.23.7)
-      '@babel/plugin-transform-template-literals': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-transform-typeof-symbol': 7.18.9(@babel/core@7.23.7)
-      '@babel/plugin-transform-unicode-escapes': 7.18.10(@babel/core@7.23.7)
-      '@babel/plugin-transform-unicode-regex': 7.18.6(@babel/core@7.23.7)
-      '@babel/preset-modules': 0.1.5(@babel/core@7.23.7)
-      '@babel/types': 7.23.6
-      babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.23.7)
-      babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.23.7)
-      babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.23.7)
-      core-js-compat: 3.30.1
-      semver: 6.3.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@babel/preset-env@7.21.4(@babel/core@7.24.5)':
     dependencies:
       '@babel/compat-data': 7.23.5
@@ -13750,6 +13655,87 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.24.5)
       babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.24.5)
       babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.24.5)
+      core-js-compat: 3.30.1
+      semver: 6.3.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@babel/preset-env@7.21.4(@babel/core@7.26.10)':
+    dependencies:
+      '@babel/compat-data': 7.23.5
+      '@babel/core': 7.26.10
+      '@babel/helper-compilation-targets': 7.23.6
+      '@babel/helper-plugin-utils': 7.22.5
+      '@babel/helper-validator-option': 7.23.5
+      '@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-proposal-async-generator-functions': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-class-static-block': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-proposal-dynamic-import': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-export-namespace-from': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-proposal-json-strings': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-logical-assignment-operators': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-numeric-separator': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-object-rest-spread': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-proposal-optional-catch-binding': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-proposal-private-property-in-object': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-proposal-unicode-property-regex': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-syntax-async-generators': 7.8.4(@babel/core@7.23.7)
+      '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.23.7)
+      '@babel/plugin-syntax-class-static-block': 7.14.5(@babel/core@7.23.7)
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-export-namespace-from': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-import-assertions': 7.20.0(@babel/core@7.23.7)
+      '@babel/plugin-syntax-json-strings': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-logical-assignment-operators': 7.10.4(@babel/core@7.23.7)
+      '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-numeric-separator': 7.10.4(@babel/core@7.23.7)
+      '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-optional-catch-binding': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.23.7)
+      '@babel/plugin-syntax-private-property-in-object': 7.14.5(@babel/core@7.23.7)
+      '@babel/plugin-syntax-top-level-await': 7.14.5(@babel/core@7.23.7)
+      '@babel/plugin-transform-arrow-functions': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-transform-async-to-generator': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-transform-block-scoped-functions': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-block-scoping': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-transform-classes': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-transform-computed-properties': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-transform-destructuring': 7.21.3(@babel/core@7.23.7)
+      '@babel/plugin-transform-dotall-regex': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-duplicate-keys': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-transform-exponentiation-operator': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-for-of': 7.21.0(@babel/core@7.23.7)
+      '@babel/plugin-transform-function-name': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-transform-literals': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-transform-member-expression-literals': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-modules-amd': 7.20.11(@babel/core@7.23.7)
+      '@babel/plugin-transform-modules-commonjs': 7.21.2(@babel/core@7.23.7)
+      '@babel/plugin-transform-modules-systemjs': 7.20.11(@babel/core@7.23.7)
+      '@babel/plugin-transform-modules-umd': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-named-capturing-groups-regex': 7.20.5(@babel/core@7.23.7)
+      '@babel/plugin-transform-new-target': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-object-super': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-parameters': 7.21.3(@babel/core@7.23.7)
+      '@babel/plugin-transform-property-literals': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-regenerator': 7.20.5(@babel/core@7.23.7)
+      '@babel/plugin-transform-reserved-words': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-shorthand-properties': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-spread': 7.20.7(@babel/core@7.23.7)
+      '@babel/plugin-transform-sticky-regex': 7.18.6(@babel/core@7.23.7)
+      '@babel/plugin-transform-template-literals': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-transform-typeof-symbol': 7.18.9(@babel/core@7.23.7)
+      '@babel/plugin-transform-unicode-escapes': 7.18.10(@babel/core@7.23.7)
+      '@babel/plugin-transform-unicode-regex': 7.18.6(@babel/core@7.23.7)
+      '@babel/preset-modules': 0.1.5(@babel/core@7.23.7)
+      '@babel/types': 7.23.6
+      babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.23.7)
+      babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.23.7)
+      babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.23.7)
       core-js-compat: 3.30.1
       semver: 6.3.1
     transitivePeerDependencies:
@@ -15046,7 +15032,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nestjs/platform-ws@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/websockets@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@nestjs/platform-ws@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/websockets@10.4.15)(rxjs@7.8.2)':
     dependencies:
       '@nestjs/common': 10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/websockets': 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -15068,7 +15054,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@nestjs/swagger@7.4.2(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15)(@nestjs/websockets@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(class-validator@0.14.1)(reflect-metadata@0.2.2)':
+  '@nestjs/swagger@7.4.2(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(class-validator@0.14.1)(reflect-metadata@0.2.2)':
     dependencies:
       '@microsoft/tsdoc': 0.15.1
       '@nestjs/common': 10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -15082,7 +15068,7 @@ snapshots:
     optionalDependencies:
       class-validator: 0.14.1
 
-  '@nestjs/testing@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15)(@nestjs/websockets@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15))':
+  '@nestjs/testing@10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.15)(@nestjs/platform-express@10.4.15)':
     dependencies:
       '@nestjs/common': 10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 10.4.15(@nestjs/common@10.4.15(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@10.4.15)(@nestjs/websockets@10.4.15)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -15966,7 +15952,7 @@ snapshots:
   '@storybook/cli@7.0.6':
     dependencies:
       '@babel/core': 7.23.7
-      '@babel/preset-env': 7.21.4(@babel/core@7.23.7)
+      '@babel/preset-env': 7.21.4(@babel/core@7.26.10)
       '@ndelangen/get-tarball': 3.0.7
       '@storybook/codemod': 7.0.6
       '@storybook/core-common': 7.0.6
@@ -16024,7 +16010,7 @@ snapshots:
       '@storybook/types': 7.0.6
       cross-spawn: 7.0.6
       globby: 11.1.0
-      jscodeshift: 0.14.0(@babel/preset-env@7.21.4(@babel/core@7.21.4))
+      jscodeshift: 0.14.0(@babel/preset-env@7.21.4(@babel/core@7.23.7))
       lodash: 4.17.21
       prettier: 2.8.7
       recast: 0.23.1
@@ -19733,6 +19719,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  fabric-richtext-engine@https://codeload.github.com/leandroalexme/richtext/tar.gz/620f7bb5a3b6c0c668791f9dddb7f6ea446a29bb: {}
+
   fast-deep-equal@3.1.3: {}
 
   fast-diff@1.3.0: {}
@@ -21504,31 +21492,6 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscodeshift@0.14.0(@babel/preset-env@7.21.4(@babel/core@7.21.4)):
-    dependencies:
-      '@babel/core': 7.24.5
-      '@babel/parser': 7.23.6
-      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.24.5)
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.24.5)
-      '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.24.5)
-      '@babel/plugin-transform-modules-commonjs': 7.21.2(@babel/core@7.24.5)
-      '@babel/preset-env': 7.21.4(@babel/core@7.21.4)
-      '@babel/preset-flow': 7.21.4(@babel/core@7.24.5)
-      '@babel/preset-typescript': 7.21.4(@babel/core@7.24.5)
-      '@babel/register': 7.21.0(@babel/core@7.24.5)
-      babel-core: 7.0.0-bridge.0(@babel/core@7.24.5)
-      chalk: 4.1.2
-      flow-parser: 0.204.0
-      graceful-fs: 4.2.11
-      micromatch: 4.0.5
-      neo-async: 2.6.2
-      node-dir: 0.1.17
-      recast: 0.21.5
-      temp: 0.8.4
-      write-file-atomic: 2.4.3
-    transitivePeerDependencies:
-      - supports-color
-
   jscodeshift@0.14.0(@babel/preset-env@7.21.4(@babel/core@7.23.7)):
     dependencies:
       '@babel/core': 7.24.5
@@ -21537,7 +21500,7 @@ snapshots:
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.24.5)
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.24.5)
       '@babel/plugin-transform-modules-commonjs': 7.21.2(@babel/core@7.24.5)
-      '@babel/preset-env': 7.21.4(@babel/core@7.23.7)
+      '@babel/preset-env': 7.21.4(@babel/core@7.26.10)
       '@babel/preset-flow': 7.21.4(@babel/core@7.24.5)
       '@babel/preset-typescript': 7.21.4(@babel/core@7.24.5)
       '@babel/register': 7.21.0(@babel/core@7.24.5)

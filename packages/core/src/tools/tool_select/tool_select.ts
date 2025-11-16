@@ -7,6 +7,7 @@ import {
   isFrameGraphics,
   type SuikaGraphics,
   SuikaPath,
+  SuikaRichText,
   SuikaText,
 } from '../../graphics';
 import { type IMouseEvent } from '../../host_event_manager';
@@ -81,6 +82,13 @@ export class SelectTool implements ITool {
       });
       // prevent text editor input DOM from blurring
       event.nativeEvent.preventDefault();
+    } else if (topHitElement instanceof SuikaRichText) {
+      // Activate RichText editor only if not already active
+      // If already active, RichTextEditor will handle the click
+      if (!editor.richTextEditor.isActive()) {
+        editor.richTextEditor.active(topHitElement, point);
+        event.nativeEvent.preventDefault();
+      }
     } else if (isFrameGraphics(topHitElement) && topHitElement.isGroup()) {
       const children = topHitElement.getChildren();
       for (let i = children.length - 1; i >= 0; i--) {
@@ -122,6 +130,10 @@ export class SelectTool implements ITool {
       return;
     }
 
+    if (this.editor.richTextEditor.isActive()) {
+      return;
+    }
+
     const point = this.editor.getSceneCursorXY(e);
     this.updateCursorAndHlHoverGraph(point);
     this.editor.selectedBox.setHoverByPoint(point);
@@ -153,6 +165,11 @@ export class SelectTool implements ITool {
     this.graphShouldRemovedFromSelectedIfNotMoved = null;
 
     if (this.editor.hostEventManager.isDraggingCanvasBySpace) {
+      return;
+    }
+
+    // If RichText editor is active, let it handle the mouse events
+    if (this.editor.richTextEditor.isActive()) {
       return;
     }
     // 有几种情况
@@ -232,6 +249,11 @@ export class SelectTool implements ITool {
       return;
     }
 
+    // If RichText editor is active, let it handle the mouse events
+    if (this.editor.richTextEditor.isActive()) {
+      return;
+    }
+
     if (this.currStrategy) {
       this.currStrategy.onDrag(e);
     } else {
@@ -242,6 +264,11 @@ export class SelectTool implements ITool {
     this.editor.controlHandleManager.showCustomHandles();
 
     if (this.editor.hostEventManager.isDraggingCanvasBySpace) {
+      return;
+    }
+
+    // If RichText editor is active, let it handle the mouse events
+    if (this.editor.richTextEditor.isActive()) {
       return;
     }
 

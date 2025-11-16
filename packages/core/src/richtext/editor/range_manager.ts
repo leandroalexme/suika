@@ -1,8 +1,9 @@
 import { applyMatrix, type IPoint, Matrix } from '@suika/geo';
 
-import { type SuikaEditor } from '../editor';
-import { fontManager } from '../font_manager';
-import { type IDrawInfo, type SuikaText } from '../graphics';
+import { type SuikaEditor } from '../../editor';
+import { type SuikaText } from '../../graphics/text';
+import { type IDrawInfo } from '../../graphics/type';
+import { fontManager } from '../font/font_manager';
 
 export interface IRange {
   start: number;
@@ -97,6 +98,14 @@ export class RangeManager {
     };
 
     const font = fontManager.getFont(textGraphics.attrs.fontFamily);
+
+    if (!font) {
+      return {
+        ...glyphInfo,
+        position: { x: 0, y: 0 },
+      };
+    }
+
     const fontSizeScale = textGraphics.attrs.fontSize / font.unitsPerEm;
     const fontSizeTf = new Matrix().scale(fontSizeScale, fontSizeScale);
     const position = fontSizeTf.apply(glyphInfo.position);

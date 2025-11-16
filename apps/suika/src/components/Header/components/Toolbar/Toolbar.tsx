@@ -141,6 +141,12 @@ export const ToolBar = () => {
       intlId: 'tool.text',
       icon: <TextFilled />,
     },
+    drawRichText: {
+      name: 'drawRichText',
+      hotkey: `${isWindows() ? 'Shift+' : '⇧'}T`,
+      intlId: 'tool.richText',
+      icon: <TextFilled />,
+    },
     dragCanvas: {
       name: 'dragCanvas',
       hotkey: 'H',

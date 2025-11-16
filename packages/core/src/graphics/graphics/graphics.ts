@@ -900,18 +900,30 @@ export class SuikaGraphics<ATTRS extends GraphicsAttrs = GraphicsAttrs> {
       sortIdx = generateKeyBetween(maxSortIdx, null);
     }
 
-    graphics.removeFromParent(); // 这个应该要删除？
+    graphics.removeFromParent();
+
+    // Add to new parent's children array
+    this.children.push(graphics);
+
     const newParentIndex = {
       guid: this.attrs.id,
       position: sortIdx,
     };
     if (!isEqual(graphics.attrs.parentIndex, newParentIndex)) {
-      graphics.updateAttrs({
-        parentIndex: newParentIndex,
-      });
+      // Temporarily disable collection during parent change
+      const wasNoCollect = graphics.noCollectUpdate;
+      graphics.noCollectUpdate = true;
+
+      graphics.attrs.parentIndex = newParentIndex;
+      graphics.updatedKeys.add('parentIndex');
+
+      // Restore collection state and trigger update once
+      graphics.noCollectUpdate = wasNoCollect;
+      if (!wasNoCollect && this.doc) {
+        this.doc.collectUpdatedGraphics(graphics.attrs.id);
+      }
     }
 
-    this.children.push(graphics);
     if (sortIdx) {
       // TODO: 考虑 this._sortDirty 标记为 true，然后找个合适的时机再排序，减少图形重复地调用 sortChildren
       this.sortChildren();

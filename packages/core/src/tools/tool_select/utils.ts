@@ -11,6 +11,12 @@ export const getTopHitElement = (
   const zoom = editor.viewportManager.getZoom();
   const tol = editor.setting.get('selectionHitPadding') / zoom;
   const canvasGraphics = editor.doc.getCurrentCanvas();
+
+  // Safety check: canvas might not be initialized yet
+  if (!canvasGraphics) {
+    return null;
+  }
+
   const parentIdSet = editor.selectedElements.getParentIdSet();
 
   const hitOptions: IHitOptions = {

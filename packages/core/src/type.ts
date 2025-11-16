@@ -19,6 +19,7 @@ export enum GraphicsType {
   Rect = 'Rect',
   Ellipse = 'Ellipse',
   Text = 'Text',
+  RichText = 'RichText',
   Line = 'Line',
   Path = 'Path',
   RegularPolygon = 'RegularPolygon',

@@ -14,6 +14,7 @@ import {
   SuikaPath,
   SuikaRect,
   SuikaRegularPolygon,
+  SuikaRichText,
   SuikaStar,
   SuikaText,
 } from '../graphics';
@@ -27,6 +28,7 @@ const graphCtorMap = {
   [GraphicsType.Ellipse]: SuikaEllipse,
   [GraphicsType.Line]: SuikaLine,
   [GraphicsType.Text]: SuikaText,
+  [GraphicsType.RichText]: SuikaRichText,
   [GraphicsType.Path]: SuikaPath,
   [GraphicsType.RegularPolygon]: SuikaRegularPolygon,
   [GraphicsType.Star]: SuikaStar,

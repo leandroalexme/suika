@@ -21,4 +21,7 @@ export default defineConfig({
     outDir: 'build',
     cssCodeSplit: false,
   },
+  // Garantir que arquivos de fonte sejam servidos corretamente
+  publicDir: 'public',
+  assetsInclude: ['**/*.ttf', '**/*.otf', '**/*.woff', '**/*.woff2'],
 });

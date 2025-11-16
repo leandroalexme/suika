@@ -14,6 +14,7 @@ import { KeyBindingManager } from './key_binding_manager';
 import { PathEditor } from './path_editor';
 import { PerfMonitor } from './perf_monitor';
 import { RefLine } from './ref_line';
+import { RichTextEditor } from './richtext/editor';
 import { Ruler } from './ruler';
 import { SceneGraph } from './scene/scene_graph';
 import { SelectedBox } from './selected_box';
@@ -72,6 +73,7 @@ export class SuikaEditor {
   ruler: Ruler;
   refLine: RefLine;
   textEditor: TextEditor;
+  richTextEditor: RichTextEditor;
   pathEditor: PathEditor;
 
   perfMonitor: PerfMonitor;
@@ -111,6 +113,7 @@ export class SuikaEditor {
     this.controlHandleManager.bindEvents();
 
     this.textEditor = new TextEditor(this);
+    this.richTextEditor = new RichTextEditor(this);
     this.pathEditor = new PathEditor(this);
 
     this.hostEventManager = new HostEventManager(this);

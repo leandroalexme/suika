@@ -8,6 +8,16 @@ export const calcGlyphInfos = (
 ): IGlyph[] => {
   const font = fontManager.getFont(fontStyle.fontFamily);
 
+  if (!font) {
+    return [
+      {
+        position: { x: 0, y: 0 },
+        width: 0,
+        commands: '',
+      },
+    ];
+  }
+
   const originGlyphs = font.stringToGlyphs(content);
   const glyphs: IGlyph[] = [];
 

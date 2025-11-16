@@ -49,6 +49,7 @@ export class ClipboardManager {
       if (
         !clipboardData ||
         this.editor.textEditor.isActive() ||
+        this.editor.richTextEditor.isActive() ||
         ((e.target instanceof HTMLInputElement ||
           e.target instanceof HTMLTextAreaElement) &&
           !this.editor.textEditor.isEditorInputDom(e.target))
@@ -77,6 +78,7 @@ export class ClipboardManager {
     this.editor.keybindingManager.register({
       key: { metaKey: true, keyCode: 'KeyC' },
       winKey: { ctrlKey: true, keyCode: 'KeyC' },
+      when: (ctx) => !ctx.isRichTextEditing,
       actionName: 'Copy',
       action: copyHandler,
     });

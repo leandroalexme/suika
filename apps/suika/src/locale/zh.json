@@ -17,6 +17,7 @@
   "tool.polygon": "多边形",
   "tool.star": "星形",
   "tool.text": "文字",
+  "tool.richText": "富文本",
   "tool.hand": "拖拽画布",
   "tool.pencil": "铅笔",
   "command.copy": "复制",

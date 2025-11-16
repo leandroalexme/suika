@@ -17,6 +17,7 @@
   "tool.polygon": "Polygon",
   "tool.star": "Star",
   "tool.text": "Text",
+  "tool.richText": "Rich Text",
   "tool.hand": "Hand",
   "tool.pencil": "Pencil",
   "command.copy": "Copy",

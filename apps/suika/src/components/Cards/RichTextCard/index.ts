@@ -1,0 +1,1 @@
+export { RichTextCard } from './RichTextCard';
