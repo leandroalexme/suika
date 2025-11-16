@@ -60,8 +60,26 @@ export const RichTextCard: React.FC = () => {
 
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
-      if (richText.hasSelection()) {
+
+      // If editing with selection, apply to selection
+      if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyBold();
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyBold();
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
       }
     }
 
@@ -75,8 +93,26 @@ export const RichTextCard: React.FC = () => {
 
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
-      if (richText.hasSelection()) {
+
+      // If editing with selection, apply to selection
+      if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyItalic();
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyItalic();
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
       }
     }
 
@@ -90,8 +126,26 @@ export const RichTextCard: React.FC = () => {
 
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
-      if (richText.hasSelection()) {
+
+      // If editing with selection, apply to selection
+      if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyUnderline();
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyUnderline();
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
       }
     }
 
@@ -105,8 +159,26 @@ export const RichTextCard: React.FC = () => {
 
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
-      if (richText.hasSelection()) {
+
+      // If editing with selection, apply to selection
+      if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyColor(color);
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyColor(color);
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
       }
     }
 
@@ -121,11 +193,34 @@ export const RichTextCard: React.FC = () => {
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
 
-      // Se estiver editando e tiver seleção, aplicar na seleção
+      // If editing with selection, apply to selection
       if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyFontSize(size);
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyFontSize(size);
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
+
+        // Also update default for new text
+        const updatedModel = {
+          ...richText.attrs.model,
+          defaultFontSize: size,
+        };
+        richText.updateAttrs({ model: updatedModel });
       } else {
-        // Caso contrário, atualizar default
+        // Editing without selection: update default only
         const updatedModel = {
           ...richText.attrs.model,
           defaultFontSize: size,
@@ -146,11 +241,34 @@ export const RichTextCard: React.FC = () => {
     for (const item of richTextItems) {
       const richText = item as SuikaRichText;
 
-      // Se estiver editando e tiver seleção, aplicar na seleção
+      // If editing with selection, apply to selection
       if (richText.getIsEditing() && richText.hasSelection()) {
         richText.applyFontFamily(family);
+      } else if (!richText.getIsEditing()) {
+        // If not editing, apply to ALL text
+        const textLength = richText.getTextLength();
+        if (textLength > 0) {
+          // Temporarily select all text
+          const originalStart = richText.selectionStart;
+          const originalEnd = richText.selectionEnd;
+
+          richText.selectionStart = 0;
+          richText.selectionEnd = textLength;
+          richText.applyFontFamily(family);
+
+          // Restore selection
+          richText.selectionStart = originalStart;
+          richText.selectionEnd = originalEnd;
+        }
+
+        // Also update default for new text
+        const updatedModel = {
+          ...richText.attrs.model,
+          defaultFontFamily: family,
+        };
+        richText.updateAttrs({ model: updatedModel });
       } else {
-        // Caso contrário, atualizar default
+        // Editing without selection: update default only
         const updatedModel = {
           ...richText.attrs.model,
           defaultFontFamily: family,
