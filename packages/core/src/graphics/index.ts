@@ -10,4 +10,5 @@ export * from './rect';
 export * from './regular_polygon';
 export * from './star';
 export * from './text';
+export * from './rich_text';
 export * from './type';
